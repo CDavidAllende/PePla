@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "productName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "productName"
+    },
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "origin": {
+      "type": "enumeration",
+      "enum": [
+        "NTSC-U / NTSC-US",
+        "NTSC-J",
+        "PAL",
+        "NTSC-C / NTSC-Asia",
+        "Región Free"
+      ]
+    },
+    "genero": {
+      "type": "enumeration",
+      "enum": [
+        "Accion",
+        "Carreras",
+        "Peleas",
+        "Fantasia",
+        "Mundo Abierto",
+        "Shooter",
+        "Plataformas",
+        "Terror",
+        "RPG"
+      ]
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    }
+  }
+}
