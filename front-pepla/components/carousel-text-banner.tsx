@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation"
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel"
 import { CardContent, Card } from "./ui/card"
+import Autoplay from "embla-carousel-autoplay"
 
 export const dataCarouselTop = [
     {
@@ -42,17 +43,22 @@ const CarouselTextBanner = () => {
 
   return (
     <div className="bg-gray-100 py-4 border-b">
-      <Carousel className="w-full">
+      <Carousel className="w-full max-w-4xl mx-auto"   
+        plugins={[
+          Autoplay({
+            delay: 2500
+          })
+        ]}
+        >
         <CarouselContent>
-          {dataCarouselTop.map(({ id, title, link }) => (
+          {dataCarouselTop.map(({ id, title, link, description }) => (
             <CarouselItem key={id} className="basis-full">
               <div 
                 className="flex justify-center items-center min-h-[50px] cursor-pointer hover:bg-gray-200 transition-colors"
                 onClick={() => router.push(link)}
               >
-                <p className="text-sm font-medium text-center px-4">
-                  {title}
-                </p>
+                <p className="text-sm font-medium text-center dark:text-secondary px-4">{title}</p>
+                <p className="text-xs sm:text-sm text-wrap dark:text-secondary">{description}</p>
               </div>
             </CarouselItem>
           ))}
