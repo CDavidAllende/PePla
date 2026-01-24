@@ -42,7 +42,7 @@ const CarouselTextBanner = () => {
   const router = useRouter()
 
   return (
-    <div className="bg-gray-100 py-4 border-b">
+    <div className="bg-gray-100 py-4 border-b ">
       <Carousel className="w-full max-w-4xl mx-auto"   
         plugins={[
           Autoplay({

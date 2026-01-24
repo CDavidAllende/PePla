@@ -1,5 +1,5 @@
 export default function  Page() {
     return (
-        <div>Page Cart</div>
+        <div>Page category  </div>
     )
 }

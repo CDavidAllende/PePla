@@ -19,7 +19,7 @@ const MenuList = () => {
   const isMobile = useIsMobile()
 
   return (
-    <NavigationMenu viewport={isMobile}>
+    <NavigationMenu viewport={isMobile} className="relative z-50">
       <NavigationMenuList className="flex-wrap">
         <NavigationMenuItem>
           <NavigationMenuTrigger>Sobre nosotros</NavigationMenuTrigger>
