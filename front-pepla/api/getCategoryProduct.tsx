@@ -1,7 +1,9 @@
 import { useState,useEffect } from "react";
 
-export function useGetCategoryProduct(slug: string | string []) {
-const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?populate=*&filters[category][slug][$eq]=${slug}`;
+export function useGetCategoryProduct(slug: string | string[]) {
+    const categorySlug = Array.isArray(slug) ? slug[0] : slug;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?populate=*&filters[category][slug][$eq]=${categorySlug}`;
+    console.log("API:", process.env.NEXT_PUBLIC_BACKEND_URL)
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");

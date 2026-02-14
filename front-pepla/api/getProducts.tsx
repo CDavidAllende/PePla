@@ -4,7 +4,7 @@ import { ResponseType } from "@/types/response";
 
 export function useGetCategorias(): ResponseType<CategoryType[]> {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories?populate=*`;
-
+console.log("API:", process.env.NEXT_PUBLIC_BACKEND_URL)
     const [result, setResult] = useState<CategoryType[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>("");

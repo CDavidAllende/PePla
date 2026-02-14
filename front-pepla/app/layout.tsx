@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
-
+console.log("ENV BACKEND:", process.env.NEXT_PUBLIC_BACKEND_URL)
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
