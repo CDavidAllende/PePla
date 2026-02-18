@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { toast } from 'sonner'
+import { Toaster } from "sonner"
 
 import { ProductType } from '@/types/product'
 
@@ -9,6 +10,17 @@ interface CartStore {
     addItem: (data: ProductType) => void
     removeItem: (id: number) => void
     removeAll: () => void
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="es">
+      <body>
+        {children}
+        <Toaster position="top-right" richColors closeButton />
+      </body>
+    </html>
+  )
 }
 
 export const useCart = create(

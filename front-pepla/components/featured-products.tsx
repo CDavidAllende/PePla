@@ -33,17 +33,13 @@ const FeaturedProducts = () => {
     if (loading) {
         return (
             <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
-                {/* Título con skeleton */}
                 <div className="px-6 mb-8 relative">
                     <span className="absolute -top-6 left-6 text-8xl font-black text-gray-100 select-none pointer-events-none">
                         TOP
                     </span>
                     <h3 className="text-4xl font-black tracking-tight relative z-10">
-                        Productos destacados
+                        Juegos destacados
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1">
-                        Los más populares de nuestra tienda
-                    </p>
                 </div>
                 <SkeletonSchema grid={3} />
             </div>

@@ -4,7 +4,10 @@ import "./globals.css";
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
+
 console.log("ENV BACKEND:", process.env.NEXT_PUBLIC_BACKEND_URL)
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,20 +29,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // AÑADIDO: suppressHydrationWarning ES CRÍTICO
     <html lang="es" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light" // Cambié a "light" fijo para debugging
-          enableSystem={false} // Desactivado temporalmente
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Navbar />
           {children}
           <Footer />
+          <Toaster position="top-right" richColors closeButton />
         </ThemeProvider>
       </body>
     </html>
