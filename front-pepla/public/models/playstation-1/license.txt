@@ -1,0 +1,11 @@
+Model Information:
+* title:	PlayStation 1 - Assignment - GAP
+* source:	https://sketchfab.com/3d-models/playstation-1-assignment-gap-adb971118f094db3991eaf1906ed5d4d
+* author:	Lars Maes (https://sketchfab.com/larsmaes)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PlayStation 1 - Assignment - GAP" (https://sketchfab.com/3d-models/playstation-1-assignment-gap-adb971118f094db3991eaf1906ed5d4d) by Lars Maes (https://sketchfab.com/larsmaes) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

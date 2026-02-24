@@ -6,7 +6,6 @@ import { buttonVariants } from "./ui/button";
 const BannerProduct = () => {
     return (
         <div className="mt-16 px-4">
-            {/* Sección de texto */}
             <div className="max-w-6xl mx-auto text-center mb-12">
                 <div className="flex items-center justify-center gap-4 mb-6">
                     <div className="h-[2px] w-12 bg-black dark:bg-white"/>
@@ -36,7 +35,6 @@ const BannerProduct = () => {
                 </Link>
             </div>
 
-            {/* Banner */}
             <div className="h-[250px] bg-contain lg:h-[600px] bg-[url('/banner.png')] bg-center bg-no-repeat" />
         </div>
     )

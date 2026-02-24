@@ -39,15 +39,15 @@ const MenuList = () => {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/shop" title="Tienda">
-                Accede a toda tu información de compra, pedidos y mucho más.
-              </ListItem>
-              <ListItem href="/offers" title="Ofertas">
-                Promos y descuentos de la semana.
-              </ListItem>
-              <ListItem href="/accesorios" title="Accesorios">
-                Productos complementarios como controles, cables, cargadores, etc.
-              </ListItem>
+              <ListItem href="/orders" title="Tienda">
+        Accede a toda tu información de compra, pedidos y mucho más.
+      </ListItem>
+      <ListItem href="/offers" title="Ofertas">
+        Promos y descuentos de la semana.
+      </ListItem>
+      <ListItem href="/category/accesorios" title="Accesorios">
+        Productos complementarios como controles, cables, cargadores, etc.
+      </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -88,13 +88,10 @@ const MenuList = () => {
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/accesorios">Accesorios</Link>
+            <Link href="/category/accesorios">Accesorios</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         
-        <NavigationMenuItem className="hidden md:block">
-          <NavigationMenuLink>Xploids</NavigationMenuLink>
-        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )

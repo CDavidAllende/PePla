@@ -1,0 +1,11 @@
+Model Information:
+* title:	XBox 360 (Black) | 3D model by: Rob Bryant, Jr
+* source:	https://sketchfab.com/3d-models/xbox-360-black-3d-model-by-rob-bryant-jr-f65ac4721fd34dd8a8b63adfa712f5b8
+* author:	robbryantjr (https://sketchfab.com/robbryantjr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "XBox 360 (Black) | 3D model by: Rob Bryant, Jr" (https://sketchfab.com/3d-models/xbox-360-black-3d-model-by-rob-bryant-jr-f65ac4721fd34dd8a8b63adfa712f5b8) by robbryantjr (https://sketchfab.com/robbryantjr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

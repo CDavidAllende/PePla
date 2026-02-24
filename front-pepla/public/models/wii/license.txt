@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wii
+* source:	https://sketchfab.com/3d-models/wii-7a96a38cf0684aecb42a58d1e3b65cb9
+* author:	elouisetrewartha (https://sketchfab.com/etrewartha)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wii" (https://sketchfab.com/3d-models/wii-7a96a38cf0684aecb42a58d1e3b65cb9) by elouisetrewartha (https://sketchfab.com/etrewartha) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

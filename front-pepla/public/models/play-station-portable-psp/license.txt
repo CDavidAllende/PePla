@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sony PSP
+* source:	https://sketchfab.com/3d-models/sony-psp-dca89d10ec304d0cab76837750df7761
+* author:	Ilya Ostrovsky (https://sketchfab.com/strov)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sony PSP" (https://sketchfab.com/3d-models/sony-psp-dca89d10ec304d0cab76837750df7761) by Ilya Ostrovsky (https://sketchfab.com/strov) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

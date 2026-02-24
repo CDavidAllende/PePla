@@ -1,0 +1,11 @@
+Model Information:
+* title:	PlayStation 2 Slim
+* source:	https://sketchfab.com/3d-models/playstation-2-slim-c9094975e93144ad9507306f2d970451
+* author:	Alvaroxidis (https://sketchfab.com/Alvaroxidis)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PlayStation 2 Slim" (https://sketchfab.com/3d-models/playstation-2-slim-c9094975e93144ad9507306f2d970451) by Alvaroxidis (https://sketchfab.com/Alvaroxidis) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 
 export function useGetProductsByGenre(genreSlug: string) {
-    // Convertir slug a género original (ej: "mundo-abierto" → "mundo abierto")
     const genre = genreSlug.replace(/-/g, " ")
     
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[genero][$eqi]=${genre}&populate=*`

@@ -13,7 +13,6 @@ export default function GenrePage() {
   const { genreSlug } = params
   const { result, loading }: ResponseType<any> = useGetProductsByGenre(genreSlug)
 
-  // Convertir slug a título legible
   const genreTitle = genreSlug
     ? genreSlug
         .split("-")

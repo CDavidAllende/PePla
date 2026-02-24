@@ -1,0 +1,11 @@
+Model Information:
+* title:	GameCube console
+* source:	https://sketchfab.com/3d-models/gamecube-console-187a584e3bff46c2aa1bd8a701211fb4
+* author:	Jeffrey fan 2000 (https://sketchfab.com/8723516)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "GameCube console" (https://sketchfab.com/3d-models/gamecube-console-187a584e3bff46c2aa1bd8a701211fb4) by Jeffrey fan 2000 (https://sketchfab.com/8723516) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

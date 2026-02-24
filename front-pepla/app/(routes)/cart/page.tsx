@@ -75,6 +75,7 @@ export default function CartPage() {
                         Vaciar carrito
                     </button>
                 </div>
+
                 <div className="md:col-span-1 px-4">
                     <div className="border rounded-lg p-6 sticky top-8">
                         <h2 className="text-xl font-black mb-4">
@@ -101,7 +102,7 @@ export default function CartPage() {
 
                         <Button 
                             className="w-full" 
-                            onClick={() => console.log("Checkout")}
+                            onClick={() => router.push('/checkout')}
                         >
                             Proceder al pago
                         </Button>
