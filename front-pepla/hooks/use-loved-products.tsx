@@ -5,7 +5,7 @@ import { ProductType } from '@/types/product'
 
 interface LovedProductsStore {
     lovedItems: ProductType[]
-    addLoveItem: (data: ProductType) => void
+    addLoveItem: (data: ProductType, isAuthenticated: boolean, redirectToLogin: () => void) => void
     removeLoveItem: (id: number) => void
     removeAll: () => void
 }
@@ -15,7 +15,13 @@ export const useLovedProducts = create(
         (set, get) => ({
             lovedItems: [],
             
-            addLoveItem: (data: ProductType) => {
+            addLoveItem: (data: ProductType, isAuthenticated: boolean, redirectToLogin: () => void) => {
+                if (!isAuthenticated) {
+                    toast.error("Debes iniciar sesión para agregar a favoritos")
+                    redirectToLogin()
+                    return
+                }
+
                 const currentItems = get().lovedItems
                 const existingItem = currentItems.find((item) => item.id === data.id)
                 

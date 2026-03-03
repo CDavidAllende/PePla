@@ -1,5 +1,6 @@
 "use client"
 
+import AuthGuard from "@/components/auth-guard"
 import { useCart } from "@/hooks/use-cart"
 import { Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,6 +14,7 @@ export default function CartPage() {
 
     if (items.length === 0) {
         return (
+            <AuthGuard>
             <div className="max-w-6xl mx-auto px-24 py-32 text-center">
                 <h1 className="text-3xl font-black mb-4">Tu carrito está vacío</h1>
                 <p className="text-gray-500 mb-8">
@@ -22,6 +24,7 @@ export default function CartPage() {
                     Seguir comprando
                 </Button>
             </div>
+            </AuthGuard>
         )
     }
 

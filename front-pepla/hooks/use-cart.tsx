@@ -1,33 +1,26 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { toast } from 'sonner'
-import { Toaster } from "sonner"
-
 import { ProductType } from '@/types/product'
 
 interface CartStore {
     items: ProductType[]
-    addItem: (data: ProductType) => void
+    addItem: (data: ProductType, isAuthenticated: boolean, redirectToLogin: () => void) => void
     removeItem: (id: number) => void
     removeAll: () => void
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="es">
-      <body>
-        {children}
-        <Toaster position="top-right" richColors closeButton />
-      </body>
-    </html>
-  )
 }
 
 export const useCart = create(
     persist<CartStore>(
         (set, get) => ({
             items: [],
-            addItem: (data: ProductType) => {
+            addItem: (data: ProductType, isAuthenticated: boolean, redirectToLogin: () => void) => {
+                if (!isAuthenticated) {
+                    toast.error("Debes iniciar sesión para agregar productos al carrito")
+                    redirectToLogin()
+                    return
+                }
+
                 const currentItems = get().items
                 const existingItem = currentItems.find((item) => item.id === data.id)
                 

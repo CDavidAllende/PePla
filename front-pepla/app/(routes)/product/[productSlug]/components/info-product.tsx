@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import { useLovedProducts } from "@/hooks/use-loved-products";
+import { useAuth } from "@/contexts/auth-context";
+import { useRouter } from "next/navigation";
 
 interface InfoProductProps {
     product: ProductType
@@ -14,8 +16,26 @@ const InfoProduct = (props: InfoProductProps) => {
     const { product } = props
     const { addItem } = useCart()
     const { addLoveItem, lovedItems } = useLovedProducts()
+    const { isAuthenticated } = useAuth()
+    const router = useRouter()
     
     const isLoved = lovedItems.some(item => item.id === product.id)
+
+    const handleAddToCart = () => {
+        addItem(
+            product, 
+            isAuthenticated, 
+            () => router.push('/login?redirect=' + window.location.pathname)
+        )
+    }
+
+    const handleToggleFavorite = () => {
+        addLoveItem(
+            product,
+            isAuthenticated,
+            () => router.push('/login?redirect=' + window.location.pathname)
+        )
+    }
 
     return (
         <div className="px-6">
@@ -35,7 +55,7 @@ const InfoProduct = (props: InfoProductProps) => {
             <div className="flex items-center gap-5">
                 <Button 
                     className="w-full" 
-                    onClick={() => addItem(product)}
+                    onClick={handleAddToCart}
                 >
                     Agregar al carrito
                 </Button>
@@ -45,7 +65,7 @@ const InfoProduct = (props: InfoProductProps) => {
                     className={`transition duration-300 cursor-pointer hover:fill-red-500 flex-shrink-0 ${
                         isLoved ? 'fill-red-500 text-red-500' : ''
                     }`}
-                    onClick={() => addLoveItem(product)} 
+                    onClick={handleToggleFavorite} 
                 />
             </div>
         </div>

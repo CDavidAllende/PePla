@@ -4,9 +4,9 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { ProductType } from "@/types/product"
 import { Expand, ShoppingCart } from "lucide-react"
 import IconButton from "@/components/icon-button"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useCart } from "@/hooks/use-cart"
-import { useLovedProducts } from "@/hooks/use-loved-products"
+import { useAuth } from "@/contexts/auth-context"
 
 type ProductCardProps = {
     product: ProductType
@@ -14,8 +14,17 @@ type ProductCardProps = {
 
 const ProductCard = ({ product }: ProductCardProps) => {
     const router = useRouter()
+    const pathname = usePathname()
     const { addItem } = useCart()
-    const { addLoveItem } = useLovedProducts()
+    const { isAuthenticated } = useAuth()
+
+    const handleAddToCart = () => {
+        addItem(
+            product, 
+            isAuthenticated, 
+            () => router.push(`/login?redirect=${pathname}`)
+        )
+    }
 
     return (
         <div className="border rounded-lg p-4 hover:shadow-lg transition">
@@ -36,7 +45,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                                             icon={<Expand size={20} className="text-gray-600"/>} 
                                         />
                                         <IconButton 
-                                            onClick={() => addItem(product)} 
+                                            onClick={handleAddToCart} 
                                             icon={<ShoppingCart size={20} className="text-gray-600"/>} 
                                         />
                                     </div>

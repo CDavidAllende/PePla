@@ -2,14 +2,26 @@
 
 import { useLovedProducts } from "@/hooks/use-loved-products"
 import { useCart } from "@/hooks/use-cart"
+import { useAuth } from "@/contexts/auth-context"
 import { X, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
+import AuthGuard from "@/components/auth-guard"
 
-export default function LovedProductsPage() {
+function LovedProductsContent() {
     const { lovedItems, removeLoveItem, removeAll } = useLovedProducts()
     const { addItem } = useCart()
+    const { isAuthenticated } = useAuth()
     const router = useRouter()
+    const pathname = usePathname()
+
+    const handleAddToCart = (product: any) => {
+        addItem(
+            product,
+            isAuthenticated,
+            () => router.push(`/login?redirect=${pathname}`)
+        )
+    }
 
     if (lovedItems.length === 0) {
         return (
@@ -85,7 +97,7 @@ export default function LovedProductsPage() {
 
                             <Button 
                                 className="w-full"
-                                onClick={() => addItem(product)}
+                                onClick={() => handleAddToCart(product)}
                             >
                                 <ShoppingCart size={16} className="mr-2" />
                                 Agregar al carrito
@@ -95,5 +107,13 @@ export default function LovedProductsPage() {
                 ))}
             </div>
         </div>
+    )
+}
+
+export default function LovedProductsPage() {
+    return (
+        <AuthGuard>
+            <LovedProductsContent />
+        </AuthGuard>
     )
 }

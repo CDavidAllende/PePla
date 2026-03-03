@@ -84,6 +84,19 @@
 
   --color-sidebar-ring: var(--sidebar-ring);
 }
+@media print {
+  nav,
+  footer {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+}
 
 :root {
 

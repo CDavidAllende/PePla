@@ -1,19 +1,24 @@
 "use client"
 
 import { useCart } from "@/hooks/use-cart"
+import { useOrders } from "@/hooks/use-orders"
+import { useAuth } from "@/contexts/auth-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
+import AuthGuard from "@/components/auth-guard"
 
-export default function CheckoutPage() {
+function CheckoutContent() {
     const { items, removeAll } = useCart()
+    const { addOrder } = useOrders()
+    const { user } = useAuth()
     const router = useRouter()
     const [isProcessing, setIsProcessing] = useState(false)
     const [formData, setFormData] = useState({
         name: "",
-        email: "",
+        email: user?.email || "",
         phone: "",
         address: ""
     })
@@ -30,7 +35,7 @@ export default function CheckoutPage() {
         e.preventDefault()
         setIsProcessing(true)
         
-        const ticket = {
+        const order = {
             orderNumber: `ORD-${Date.now()}`,
             date: new Date().toLocaleString('es-MX', {
                 year: 'numeric',
@@ -39,18 +44,24 @@ export default function CheckoutPage() {
                 hour: '2-digit',
                 minute: '2-digit'
             }),
+            status: 'processing' as const,
             customer: formData,
             items: items,
             total: totalPrice
         }
 
-        localStorage.setItem('lastTicket', JSON.stringify(ticket))
-        
-        await new Promise(resolve => setTimeout(resolve, 100))
-        
-        removeAll()
-        
-        router.push('/ticket')
+        try {
+            await addOrder(order, user!.jwt, user!.id)
+            
+            localStorage.setItem('lastTicket', JSON.stringify(order))
+            
+            await new Promise(resolve => setTimeout(resolve, 100))
+            removeAll()
+            router.push('/ticket')
+        } catch (error) {
+            console.error('Error al crear orden:', error)
+            setIsProcessing(false)
+        }
     }
 
     if (items.length === 0 && !isProcessing) {
@@ -152,5 +163,13 @@ export default function CheckoutPage() {
                 </div>
             </form>
         </div>
+    )
+}
+
+export default function CheckoutPage() {
+    return (
+        <AuthGuard>
+            <CheckoutContent />
+        </AuthGuard>
     )
 }
