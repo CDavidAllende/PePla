@@ -1,70 +1,75 @@
-"use client";
+"use client"
 
-import { useRouter } from "next/navigation";
-import { Heart, LogOut, User as UserIcon } from "lucide-react";
-import MenuList from "./menu-list";
-import ItemsMenuMobile from "./items-menu-mobile";
-import ToggleTheme from "./toggle-theme";
-import CartIcon from "./cart-icon";
-import LovedIcon from "./loved-icon";
-import { useAuth } from "@/contexts/auth-context";
-import { Button } from "./ui/button";
+import { Heart, ShoppingCart, User } from "lucide-react"
+import { useRouter } from "next/navigation"
+import MenuList from "./menu-list"
+import ItemsMenuMobile from "./items-menu-mobile"
+import ToggleTheme from "./toggle-theme"
+import CartIcon from "./cart-icon"
+import { useAuth } from "@/contexts/auth-context"
+import { useNotifications } from "@/hooks/use-notifications"
 
 const Navbar = () => {
-  const router = useRouter();
-  const { user, isAuthenticated, logout } = useAuth();
+    const router = useRouter()
+    const { isAuthenticated, user } = useAuth()
+    const { getUnreadCount } = useNotifications()
+    const unreadCount = getUnreadCount()
 
-  return (
-    <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl">
-      <h1
-        className="text-3xl"
-        onClick={() => router.push("/")}
-      >
-        Psyduck ft <span className="font-bold">PePla</span>
-      </h1>
-
-      <div className="items-center justify-between hidden sm:flex ">
-        <MenuList />
-      </div>
-
-      <div className="flex sm:hidden">
-        <ItemsMenuMobile />
-      </div>
-
-      <div className="flex items-center justify-between gap-2 sm:gap-7 ">
-        <CartIcon />
-        <LovedIcon />
-        
-        {isAuthenticated ? (
-          <div className="flex items-center gap-2">
-            <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <UserIcon size={16} />
-              <span className="text-sm font-medium">{user?.username}</span>
+    return (
+        <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl">
+            <h1 className="text-3xl" onClick={() => router.push("/")}>
+                Psyduck <span className="font-bold">ft PePla</span>
+            </h1>
+            <div className="items-center justify-between hidden sm:flex">
+                <MenuList />
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={logout}
-              title="Cerrar sesión"
-            >
-              <LogOut size={20} strokeWidth={1.5} />
-            </Button>
-          </div>
-        ) : (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => router.push('/login')}
-            title="Iniciar sesión"
-          >
-            <UserIcon size={20} strokeWidth={1.5} />
-          </Button>
-        )}
+            <div className="flex sm:hidden">
+                <ItemsMenuMobile />
+            </div>
+            <div className="flex items-center justify-between gap-2 sm:gap-7">
+                {isAuthenticated && (
+                    <div className="hidden sm:flex items-center gap-2">
+                        <div className="relative">
+                            <User 
+                                className="cursor-pointer" 
+                                strokeWidth={1} 
+                                onClick={() => router.push("/profile")}
+                            />
+                            {unreadCount > 0 && (
+                                <span className="absolute -bottom-1 -left-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold text-[10px]">
+                                    {unreadCount}
+                                </span>
+                            )}
+                        </div>
+                        <span 
+                            className="text-sm font-medium cursor-pointer hover:underline"
+                            onClick={() => router.push("/profile")}
+                        >
+                            {user?.username}
+                        </span>
+                    </div>
+                )}
 
-        <ToggleTheme />
-      </div>
-    </div>
-  );
-};
+                {isAuthenticated ? (
+                    <>
+                        <Heart 
+                            strokeWidth={1} 
+                            className="cursor-pointer" 
+                            onClick={() => router.push("/loved-products")} 
+                        />
+                        <CartIcon />
+                    </>
+                ) : (
+                    <User 
+                        strokeWidth={1} 
+                        className="cursor-pointer" 
+                        onClick={() => router.push("/login")}
+                    />
+                )}
+                <ToggleTheme />
+            </div>
+        </div>
+    )
+}
 
-export default Navbar;
+export default Navbar

@@ -13,7 +13,7 @@ function OrdersContent() {
     const { user } = useAuth()
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
     const [loading, setLoading] = useState(true)
-    const [archiving, setArchiving] = useState<number | null>(null)
+    const [archiving, setArchiving] = useState<string | null>(null)
     const [archivingAll, setArchivingAll] = useState(false)
 
     useEffect(() => {
@@ -26,21 +26,21 @@ function OrdersContent() {
         loadOrders()
     }, [user, fetchOrders])
 
-    const handleArchiveOrder = async (orderId: number) => {
-        if (!window.confirm('¿Archivar este pedido? Podrás verlo en "Pedidos archivados".')) {
-            return
-        }
-
-        setArchiving(orderId)
-        try {
-            await archiveOrder(orderId, user!.jwt)
-            toast.success('Pedido archivado correctamente')
-        } catch (error) {
-            toast.error('Error al archivar el pedido')
-        } finally {
-            setArchiving(null)
-        }
+    const handleArchiveOrder = async (documentId: string) => {
+    if (!window.confirm('¿Archivar este pedido? Podrás verlo en "Pedidos archivados".')) {
+        return
     }
+
+    setArchiving(documentId)
+    try {
+        await archiveOrder(documentId, user!.jwt)
+        toast.success('Pedido archivado correctamente')
+    } catch (error) {
+        toast.error('Error al archivar el pedido')
+    } finally {
+        setArchiving(null)
+    }
+}
 
     const handleArchiveAllOrders = async () => {
         if (!window.confirm('¿Archivar TODOS los pedidos? Podrás verlos en "Pedidos archivados".')) {
@@ -82,13 +82,13 @@ function OrdersContent() {
     }
 
     if (loading) {
-        return (
-            <div className="max-w-6xl mx-auto py-16 text-center">
-                <p>Cargando pedidos...</p>
-            </div>
-        )
+    return (
+        <div className="max-w-6xl mx-auto py-16 text-center">
+            <p>Cargando pedidos...</p>
+        </div>
+    )
     }
-
+    console.log('Órdenes actuales:', orders)
     return (
         <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
             <div className="mb-8 flex justify-between items-start">
@@ -167,15 +167,15 @@ function OrdersContent() {
                                         </Button>
                                         {order.id && (
                                             <Button
-                                                variant="outline"
-                                                size="sm"
-                                                onClick={() => handleArchiveOrder(order.id!)}
-                                                disabled={archiving === order.id}
-                                                className="text-orange-600 hover:text-orange-700"
-                                                title="Archivar pedido"
-                                            >
-                                                {archiving === order.id ? '...' : <Archive size={16} />}
-                                            </Button>
+        variant="outline"
+        size="sm"
+        onClick={() => handleArchiveOrder(order.documentId!)}
+        disabled={archiving === order.documentId}
+        className="text-orange-600 hover:text-orange-700"
+        title="Archivar pedido"
+    >
+        {archiving === order.documentId ? '...' : <Archive size={16} />}
+    </Button>
                                         )}
                                     </div>
                                 </div>

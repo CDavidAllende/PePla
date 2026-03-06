@@ -29,11 +29,11 @@
     "items": {
       "type": "json"
     },
-    "order": {
+    "user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "user"
+      "inversedBy": "order"
     },
     "date": {
       "type": "datetime"
