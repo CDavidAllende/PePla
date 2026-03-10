@@ -8,6 +8,7 @@ interface User {
     username: string
     email: string
     jwt: string
+    avatar?: string
 }
 
 interface AuthContextType {
@@ -17,6 +18,7 @@ interface AuthContextType {
     register: (username: string, email: string, password: string) => Promise<void>
     logout: () => void
     loading: boolean
+    updateAvatar: (avatarUrl: string) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -32,6 +34,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         setLoading(false)
     }, [])
+
+    const updateAvatar = (avatarUrl: string) => {
+        if (user) {
+            const updatedUser = { ...user, avatar: avatarUrl }
+            setUser(updatedUser)
+            localStorage.setItem('user', JSON.stringify(updatedUser))
+        }
+    }
 
     const login = async (identifier: string, password: string) => {
         try {
@@ -49,17 +59,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 throw new Error(data.error?.message || 'Error al iniciar sesión')
             }
 
+            // Crear key única para avatares por usuario
+            const avatarKey = `avatar_user_${data.user.id}`
+            const savedAvatar = localStorage.getItem(avatarKey)
+
             const userData = {
                 id: data.user.id,
                 username: data.user.username,
                 email: data.user.email,
                 jwt: data.jwt,
+                avatar: savedAvatar || undefined
             }
+
+            console.log('Usuario guardado:', userData)
 
             setUser(userData)
             localStorage.setItem('user', JSON.stringify(userData))
             toast.success(`¡Bienvenido ${data.user.username}!`)
         } catch (error: any) {
+            console.error('Error en login:', error)
             toast.error(error.message)
             throw error
         }
@@ -86,6 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 username: data.user.username,
                 email: data.user.email,
                 jwt: data.jwt,
+                avatar: undefined
             }
 
             setUser(userData)
@@ -105,7 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout, loading }}>
+        <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout, loading, updateAvatar }}>
             {children}
         </AuthContext.Provider>
     )

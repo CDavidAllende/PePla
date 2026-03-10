@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { User, Mail, Package, Heart, Bell, LogOut, Trash2, Check } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import AvatarUpload from "@/components/avatar-upload"
 import AuthGuard from "@/components/auth-guard"
 
 function ProfileContent() {
@@ -17,20 +18,20 @@ function ProfileContent() {
     if (!user) return null
 
     const maskEmail = (email?: string) => {
-  if (!email) return ""
+    if (!email) return ""
 
-  const [name, domain] = email.split('@')
+    const [name, domain] = email.split('@')
 
-  if (name.length <= 2) return email
+    if (name.length <= 2) return email
 
-  const masked =
-    name[0] +
-    name[1] +
-    '*'.repeat(name.length - 4) +
-    name.slice(-2)
+    const masked =
+     name[0] +
+     name[1] +
+     '*'.repeat(name.length - 4) +
+     name.slice(-2)
 
-  return `${masked}@${domain}`
-}
+     return `${masked}@${domain}`
+    }
 
     const handleNotificationClick = (notif: any) => {
         markAsRead(notif.id)
@@ -42,11 +43,21 @@ function ProfileContent() {
         <div className="max-w-4xl mx-auto py-8 px-4 sm:px-24">
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden">
                 <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-8 text-center">
-                    <div className="inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-full mb-4">
-                        <User size={48} />
+                    <div className="inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-full mb-4 overflow-hidden">
+                        {user.avatar ? (
+                            <img 
+                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${user.avatar}`}
+                                alt={user.username}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <User size={48} />
+                        )}
                     </div>
                     <h1 className="text-3xl font-black mb-1">{user.username}</h1>
-                    <p className="text-sm opacity-90">{maskEmail(user.email)}</p>
+                    <p className="text-sm opacity-90 mb-4">{maskEmail(user.email)}</p>
+                    
+                    <AvatarUpload />
                 </div>
 
                 <div className="p-8 space-y-6">
@@ -65,10 +76,9 @@ function ProfileContent() {
                                 <p className="font-medium">{maskEmail(user.email)}</p>
                             </div>
                         </div>
-                        {/* Botón editar perfil (plaeholder por ahora) */}
                         <Button 
                             variant="outline" 
-                            className="mt-4"
+                            className="mt-4 cursor-pointer"
                             onClick={() => alert('Función de editar perfil próximamente')}
                         >
                             Editar perfil
@@ -83,10 +93,10 @@ function ProfileContent() {
                                 className="justify-start h-auto py-4"
                                 onClick={() => router.push('/orders')}
                             >
-                                <Package className="mr-3" size={20} />
-                                <div className="text-left">
-                                    <p className="font-medium">Mis Pedidos</p>
-                                    <p className="text-xs text-gray-500">Ver historial de compras</p>
+                                <Package className="mr-3 " size={20} />
+                                <div className="text-left cursor-pointer">
+                                    <p className="font-medium ">Mis Pedidos</p>
+                                    <p className="text-xs text-gray-500 ">Ver historial de compras</p>
                                 </div>
                             </Button>
 
@@ -96,7 +106,7 @@ function ProfileContent() {
                                 onClick={() => router.push('/loved-products')}
                             >
                                 <Heart className="mr-3" size={20} />
-                                <div className="text-left">
+                                <div className="text-left cursor-pointer">
                                     <p className="font-medium">Favoritos</p>
                                     <p className="text-xs text-gray-500">Productos guardados</p>
                                 </div>
@@ -189,7 +199,7 @@ function ProfileContent() {
 
                     <Button 
                         variant="outline" 
-                        className="w-full text-red-600 border-red-200 hover:bg-red-50"
+                        className="w-full text-red-600 border-red-200 hover:bg-red-50 cursor-pointer"
                         onClick={logout}
                     >
                         <LogOut className="mr-2" size={20} />

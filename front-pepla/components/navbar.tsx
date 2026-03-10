@@ -30,11 +30,25 @@ const Navbar = () => {
                 {isAuthenticated && (
                     <div className="hidden sm:flex items-center gap-2">
                         <div className="relative">
-                            <User 
-                                className="cursor-pointer" 
-                                strokeWidth={1} 
-                                onClick={() => router.push("/profile")}
-                            />
+                            {user?.avatar ? (
+                                <div 
+                                    className="w-8 h-8 rounded-full overflow-hidden cursor-pointer border-2 border-gray-300 dark:border-gray-600"
+                                    onClick={() => router.push("/profile")}
+                                >
+                                    <img 
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${user.avatar}`}
+                                        alt={user.username}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            ) : (
+                                <User 
+                                    className="cursor-pointer" 
+                                    strokeWidth={1} 
+                                    onClick={() => router.push("/profile")}
+                                />
+                            )}
+                            
                             {unreadCount > 0 && (
                                 <span className="absolute -bottom-1 -left-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold text-[10px]">
                                     {unreadCount}
