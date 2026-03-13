@@ -7,6 +7,7 @@ import IconButton from "@/components/icon-button"
 import { useRouter, usePathname } from "next/navigation"
 import { useCart } from "@/hooks/use-cart"
 import { useAuth } from "@/contexts/auth-context"
+import { useCurrency } from "@/hooks/use-currency"
 
 type ProductCardProps = {
     product: ProductType
@@ -15,6 +16,7 @@ type ProductCardProps = {
 const ProductCard = ({ product }: ProductCardProps) => {
     const router = useRouter()
     const pathname = usePathname()
+    const { country } = useCurrency()
     const { addItem } = useCart()
     const { isAuthenticated } = useAuth()
 
@@ -66,7 +68,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
             <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-green-600">
-                    ${product.price}
+                    {country.symbol}{product.price} {country.currency}
                 </span>
                 <span className="text-xs bg-gray-200 px-2 py-1 rounded">
                     {product.origin}

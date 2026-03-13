@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { useRouter, usePathname } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
 import { useState } from "react"
+import { useCurrency } from "@/hooks/use-currency"
 
 export type InfoProductProps = {
     product: ProductType
@@ -16,6 +17,7 @@ export type InfoProductProps = {
 
 const InfoProduct = (props: InfoProductProps) => {
     const { product } = props
+    const { country } = useCurrency()
     const router = useRouter()
     const pathname = usePathname()
     const { isAuthenticated, user } = useAuth()
@@ -94,7 +96,7 @@ const InfoProduct = (props: InfoProductProps) => {
                 </div>
             </div>
             <div className="flex items-center justify-between gap-3 mb-3">
-                <p className="text-lg">{formatPrice(product.price)}</p>
+                <p className="text-lg">{country.symbol}{product.price} {country.currency}</p>
 
                 <div className="flex items-center gap-2">
                     <Button onClick={handleShare} className="bg-blue-600 hover:bg-blue-700">

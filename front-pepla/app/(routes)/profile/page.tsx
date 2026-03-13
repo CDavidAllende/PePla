@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { User, Mail, Package, Heart, Bell, LogOut, Trash2, Check } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { useCurrency, countries, Country } from "@/hooks/use-currency"
 import AvatarUpload from "@/components/avatar-upload"
 import AuthGuard from "@/components/auth-guard"
 
@@ -13,6 +14,7 @@ function ProfileContent() {
     const { user, logout } = useAuth()
     const router = useRouter()
     const { notifications, markAsRead, markAllAsRead, deleteNotification, clearAll } = useNotifications()
+    const { country, setCountry } = useCurrency()
     const [showNotifications, setShowNotifications] = useState(false)
 
     if (!user) return null
@@ -84,6 +86,40 @@ function ProfileContent() {
                             Editar perfil
                         </Button>
                     </div>
+
+                        <div className="border-b pb-6">
+                            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+                                🌍 Región y Moneda
+                            </h2>
+                            <div>
+                                <p className="text-sm text-gray-500 mb-2">País y moneda preferida</p>
+                                <select
+                                    value={country.code}
+                                    onChange={(e) => {
+                                        const selectedCountry = countries.find(c => c.code === e.target.value)
+                                        if (selectedCountry) {
+                                            setCountry(selectedCountry, user.id)
+                                        }
+                                    }}
+                                    className="w-full p-3 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700"
+                                >
+                                    {countries.map((c) => (
+                                        <option key={c.code} value={c.code}>
+                                            {c.flag} {c.name} - {c.symbol} {c.currency}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        Los precios se mostrarán en: <span className="font-bold">{country.symbol} {country.currency}</span>
+                                    </p>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                        Ejemplo: {country.symbol}20 {country.currency}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
 
                     <div className="border-b pb-6">
                         <h2 className="text-xl font-bold mb-4">Accesos rápidos</h2>

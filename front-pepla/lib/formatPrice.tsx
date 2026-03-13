@@ -1,9 +1,6 @@
-export function formatPrice(price: number) {
-    const priceFormated = new Intl.NumberFormat('mx-MX', {
-        style: "currency",
-        currency: "MXN"
-    })
-    const finalPrice = priceFormated.format(price)
-
-    return finalPrice
+export function formatPrice(price: number, useCurrency?: { symbol: string, currency: string }) {
+    if (useCurrency) {
+        return `${useCurrency.symbol}${price} ${useCurrency.currency}`
+    }
+    return `$${price}`
 }

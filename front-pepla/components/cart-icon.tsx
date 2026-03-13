@@ -3,10 +3,12 @@
 import { ShoppingCart } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useCart } from "@/hooks/use-cart"
+import { useCurrency } from "@/hooks/use-currency"
 
 const CartIcon = () => {
     const router = useRouter()
     const items = useCart(state => state.items)
+    const { country } = useCurrency()
 
     return (
         <button
