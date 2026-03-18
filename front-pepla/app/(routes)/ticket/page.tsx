@@ -226,7 +226,6 @@ export default function TicketPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-24">
-                {/* Mensaje de éxito */}
                 <div className="text-center mb-12 no-print">
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full mb-4">
                         <CheckCircle size={48} className="text-green-600 dark:text-green-400" />
@@ -242,7 +241,6 @@ export default function TicketPage() {
                     </p>
                 </div>
 
-                {/* Vista previa del ticket */}
                 <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden mb-8">
                     <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-8 text-center">
                         <Package size={48} className="mx-auto mb-3" />
@@ -311,7 +309,6 @@ export default function TicketPage() {
                     </div>
                 </div>
 
-                {/* Botones de acción - SOLO DESCARGAR E IMPRIMIR */}
                 <div className="flex flex-col gap-3 no-print">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <Button
@@ -338,7 +335,6 @@ export default function TicketPage() {
                 </div>
             </div>
 
-            {/* CSS para imprimir */}
             <style jsx global>{`
                 @media print {
                     .no-print {

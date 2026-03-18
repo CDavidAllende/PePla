@@ -20,9 +20,13 @@ export default function GenrePage() {
         .join(" ")
     : ""
 
+  const sortedProducts = result 
+    ? [...result].sort((a, b) => a.productName.localeCompare(b.productName))
+    : []
+
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
-      {result !== null && !loading && result.length > 0 && (
+      {sortedProducts.length > 0 && !loading && (
         <h1 className="text-3xl font-medium">
           Juegos de {genreTitle}
         </h1>
@@ -32,13 +36,13 @@ export default function GenrePage() {
       <div className="grid gap-5 mt-8 sm:grid-cols-2 md:grid-cols-3 md:gap-10">
         {loading && <SkeletonSchema grid={3} />}
         
-        {result !== null && !loading && (
-          result.map((product: ProductType) => (
+        {!loading && sortedProducts.length > 0 && (
+          sortedProducts.map((product: ProductType) => (
             <ProductCard key={product.id} product={product} />
           ))
         )}
         
-        {!loading && result && result.length === 0 && (
+        {!loading && sortedProducts.length === 0 && (
           <p className="text-center col-span-3">
             No hay juegos disponibles en este género
           </p>

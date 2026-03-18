@@ -19,7 +19,7 @@ function OrdersContent() {
     useEffect(() => {
         const loadOrders = async () => {
             if (user?.jwt) {
-                await fetchOrders(user.jwt, false) // false = no incluir archivadas
+                await fetchOrders(user.jwt, false)
             }
             setLoading(false)
         }
@@ -167,15 +167,15 @@ function OrdersContent() {
                                         </Button>
                                         {order.id && (
                                             <Button
-        variant="outline"
-        size="sm"
-        onClick={() => handleArchiveOrder(order.documentId!)}
-        disabled={archiving === order.documentId}
-        className="text-orange-600 hover:text-orange-700"
-        title="Archivar pedido"
-    >
-        {archiving === order.documentId ? '...' : <Archive size={16} />}
-    </Button>
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => handleArchiveOrder(order.documentId!)}
+                                                disabled={archiving === order.documentId}
+                                                className="text-orange-600 hover:text-orange-700"
+                                                title="Archivar pedido"
+                                            >
+                                                {archiving === order.documentId ? '...' : <Archive size={16} />}
+                                        </Button>
                                         )}
                                     </div>
                                 </div>

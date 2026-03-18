@@ -629,6 +629,19 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         'RPG',
       ]
     >;
+    genero2: Schema.Attribute.Enumeration<
+      [
+        'Accion',
+        'Carreras',
+        'Peleas',
+        'Fantasia',
+        'Mundo Abierto',
+        'Shooter',
+        'Plataformas',
+        'Terror',
+        'RPG',
+      ]
+    >;
     images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true

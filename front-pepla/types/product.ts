@@ -8,6 +8,7 @@ export type ProductType = {
     price: number;
     origin: string;
     genero: string;
+    genero2?: string;  
     isFeatured: boolean | null;
     createdAt: string;
     updatedAt: string;

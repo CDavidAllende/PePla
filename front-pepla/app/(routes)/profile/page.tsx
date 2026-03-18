@@ -78,13 +78,6 @@ function ProfileContent() {
                                 <p className="font-medium">{maskEmail(user.email)}</p>
                             </div>
                         </div>
-                        <Button 
-                            variant="outline" 
-                            className="mt-4 cursor-pointer"
-                            onClick={() => alert('Función de editar perfil próximamente')}
-                        >
-                            Editar perfil
-                        </Button>
                     </div>
 
                         <div className="border-b pb-6">

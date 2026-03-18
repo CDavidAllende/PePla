@@ -69,6 +69,20 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category"
+    },
+    "genero2": {
+      "type": "enumeration",
+      "enum": [
+        "Accion",
+        "Carreras",
+        "Peleas",
+        "Fantasia",
+        "Mundo Abierto",
+        "Shooter",
+        "Plataformas",
+        "Terror",
+        "RPG"
+      ]
     }
   }
 }

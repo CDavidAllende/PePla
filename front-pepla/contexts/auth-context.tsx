@@ -76,7 +76,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(userData)
         localStorage.setItem('user', JSON.stringify(userData))
         
-        // CARGAR LA MONEDA DEL USUARIO
         const { loadUserCurrency } = useCurrency.getState()
         loadUserCurrency(data.user.id)
         

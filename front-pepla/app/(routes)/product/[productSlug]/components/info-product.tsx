@@ -85,16 +85,23 @@ const InfoProduct = (props: InfoProductProps) => {
     return (
         <div className="px-6">
             <div className="justify-between mb-3 sm:flex">
-                <h1 className="text-2xl">{product.productName}</h1>
-                <div className="flex items-center justify-between gap-3">
-                    <p className="px-2 py-1 text-xs bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-full w-fit">
-                        {product.origin}
-                    </p>
-                    <p className="px-2 py-1 text-xs bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-full w-fit">
-                        {product.genero}
-                    </p>
-                </div>
-            </div>
+    <h1 className="text-2xl">{product.productName}</h1>
+    <div className="flex items-center justify-between gap-3 flex-wrap">
+        <p className="px-2 py-1 text-xs bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-full w-fit">
+            {product.origin}
+        </p>
+        {product.genero && (
+            <p className="px-2 py-1 text-xs bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-full w-fit">
+                {product.genero}
+            </p>
+        )}
+        {product.genero2 && (
+            <p className="px-2 py-1 text-xs bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-full w-fit">
+                {product.genero2}
+            </p>
+        )}
+    </div>
+</div>
             <div className="flex items-center justify-between gap-3 mb-3">
                 <p className="text-lg">{country.symbol}{product.price} {country.currency}</p>
 

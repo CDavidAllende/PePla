@@ -50,11 +50,9 @@ export default function AvatarUpload() {
 
             console.log('Imagen subida exitosamente:', avatarUrl)
 
-            // Guardar el avatar en localStorage con key única por usuario
             const avatarKey = `avatar_user_${user.id}`
             localStorage.setItem(avatarKey, avatarUrl)
 
-            // Actualizar el avatar en el contexto
             updateAvatar(avatarUrl)
 
             toast.success('¡Foto de perfil actualizada!')

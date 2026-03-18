@@ -30,12 +30,11 @@ interface CurrencyStore {
 }
 
 export const useCurrency = create<CurrencyStore>((set, get) => ({
-    country: countries[1], // México por defecto
+    country: countries[1], 
 
     setCountry: (country, userId) => {
         set({ country })
         
-        // Si hay userId, guardar en localStorage específico del usuario
         if (userId) {
             localStorage.setItem(`currency_user_${userId}`, JSON.stringify(country))
         }
@@ -50,10 +49,10 @@ export const useCurrency = create<CurrencyStore>((set, get) => ({
                 set({ country: parsedCountry })
             } catch (error) {
                 console.error('Error al cargar moneda del usuario')
-                set({ country: countries[1] }) // México por defecto
+                set({ country: countries[1] }) 
             }
         } else {
-            set({ country: countries[1] }) // México por defecto
+            set({ country: countries[1] }) 
         }
     },
 

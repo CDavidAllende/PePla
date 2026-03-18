@@ -8,7 +8,7 @@ import { useParams } from "next/navigation"
 import { SkeletonSchema } from "@/components/skeleton-schema"
 import ProductCard from "./components/product-card"
 import { ProductType } from "@/types/product"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import Console3DModel from "@/components/console-3d-model"
 
 export default function Page() {
@@ -17,11 +17,24 @@ export default function Page() {
   const { result, loading }: ResponseType<any> = useGetCategoryProduct(categorySlug)
   const [filterOrigin, setFilterOrigin] = useState<string>("")
 
-  const filteredProducts = filterOrigin && result
-    ? result.filter((product: ProductType) => 
+  // Ordenar alfabéticamente y filtrar
+  const filteredProducts = useMemo(() => {
+    if (!result) return []
+    
+    let products = [...result]
+    
+    // Filtrar por origen si hay filtro activo
+    if (filterOrigin) {
+      products = products.filter((product: ProductType) => 
         product.origin === filterOrigin
       )
-    : result
+    }
+    
+    // Ordenar alfabéticamente por nombre
+    return products.sort((a, b) => 
+      a.productName.localeCompare(b.productName)
+    )
+  }, [result, filterOrigin])
 
   const isAccessories = categorySlug === "accesorios"
 
@@ -66,13 +79,13 @@ export default function Page() {
           <div className={`grid gap-6 sm:grid-cols-2 ${isAccessories ? 'lg:grid-cols-4' : 'lg:grid-cols-3'}`}>
             {loading && <SkeletonSchema grid={isAccessories ? 4 : 3} />}
             
-            {filteredProducts !== null && !loading && (
+            {!loading && filteredProducts.length > 0 && (
               filteredProducts.map((product: ProductType) => (
                 <ProductCard key={product.id} product={product} />
               ))
             )}
             
-            {!loading && filteredProducts && filteredProducts.length === 0 && (
+            {!loading && filteredProducts.length === 0 && (
               <div className="col-span-full text-center py-12">
                 <p className="text-lg text-gray-500">
                   {filterOrigin 

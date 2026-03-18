@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 export function useGetProductsByGenre(genreSlug: string) {
     const genre = genreSlug.replace(/-/g, " ")
     
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[genero][$eqi]=${genre}&populate=*`
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[$or][0][genero][$eqi]=${genre}&filters[$or][1][genero2][$eqi]=${genre}&populate=*`
     
     const [result, setResult] = useState<any>(null)
     const [loading, setLoading] = useState(true)
